@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 
-export default function Navbar() {
+const Navbar = () => {
   return (
     <header className="bg-gray-800 md:sticky top-0 z-10">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -15,10 +15,7 @@ export default function Navbar() {
             Works
           </Link>
           <Link href="#skills" className="mr-5 hover:text-white">
-            Habilidades
-          </Link>
-          <Link href="#testimonials" className="mr-5 hover:text-white">
-            Testimonios
+            Skills
           </Link>
         </nav>
         <Link href="#contact"
@@ -29,3 +26,5 @@ export default function Navbar() {
     </header>
   );
 }
+
+export default Navbar;
