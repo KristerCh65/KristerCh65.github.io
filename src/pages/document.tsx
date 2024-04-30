@@ -3,7 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" data-theme="light">
         <Head>
           {/* Here you can add global fonts, meta tags, etc. */}
             <title>Krister's Portfolio</title>
