@@ -1,15 +1,22 @@
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    body {
+        @apply dark:bg-gray-800
+    }
+}
+
 :root {
-  /* commons */
-  --white-color: 255, 255, 255;
-  --color-available-arrow: 95, 91 98;
-}
-
-[data-theme='dark'] {
-  --blog-nav: 48, 41, 51;
-  --blog-header: 53, 45, 55;
-}
-
-[data-theme='light'] {
-  --blog-nav: 204, 202, 219;
-  --blog-header: 255, 255, 255;
-}
+    /* Your default theme */
+    --background: white;
+    --foreground: black;
+  }
+  
+  [data-theme='dark'] {
+    --background: black;
+    --foreground: white;
+  }

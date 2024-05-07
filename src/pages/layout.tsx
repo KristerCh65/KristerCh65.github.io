@@ -1,14 +1,16 @@
 import React from "react";
-import Navbar from '../app/components/navbar';
-import Footer from "../app/components/footer";
+import { ThemeProvider } from 'next-themes'
+ 
+// These styles apply to every route in the application
+import '../app/styles/globals.css'
+ 
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <Navbar/>
-      {children}
-      <Footer/>
+        <ThemeProvider attribute="class">{children}</ThemeProvider>          
     </>
+
   );
 }
 

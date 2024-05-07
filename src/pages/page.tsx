@@ -4,7 +4,7 @@ import RootLayout from './layout';
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <RootLayout>
-      <Component {...pageProps} />
+        <Component {...pageProps} />
     </RootLayout>
   );
 }
