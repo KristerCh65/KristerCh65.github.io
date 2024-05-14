@@ -8,7 +8,6 @@ const Home = () => {
     return (
         <RootLayout >
             <Navbar/>
-            <h2 className="text-3xl text-pink-500">Home Page</h2>
             <About/>
             <Footer/>
         </RootLayout>
