@@ -1,8 +1,9 @@
 
 
 import { useTheme } from "next-themes";
-import logo from '@/app/images/MK.png'
+import logo from '@/app/images/MK.png';
 import Image from "next/image";
+
 
 const Navbar = () => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -10,7 +11,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="flex items-center justify-between flex-wrap bg-white dark:bg-gray-900 p-4">
-        <div className="flex items-center flex-shrink-0 ml-32">
+        <div className="flex items-center flex-shrink-0 ms-12 ">
           <Image src={logo} alt="Krister Portafolio" width={60} height={60}/>
         </div>
         <div className="block lg:hidden">
@@ -48,7 +49,7 @@ const Navbar = () => {
             }
           </div>
           <div>
-            <a href="#" className="inline-flex text-sm px-4 py-2 leading-none border rounded text-black border-black dark:text-white dark:border-white dark:hover:bg-white hover:border-transparent dark:hover:text-teal-500 hover:text-teal-500 hover:bg-black mt-4 lg:mt-0 lg:mr-32">
+            <a href="/KBMCH_CV.pdf" target="_blank" className="inline-flex text-sm px-4 py-2 leading-none border rounded text-black border-black dark:text-white dark:border-white dark:hover:bg-white hover:border-transparent dark:hover:text-teal-500 hover:text-teal-500 hover:bg-black mt-4 lg:mt-0 mr-12">
               <svg className="fill-current w-4 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>Download CV</a>
           </div>
         </div>
