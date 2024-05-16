@@ -6,7 +6,7 @@ class MyDocument extends Document {
       <Html lang="en" suppressHydrationWarning>
         <Head>
           {/* Here you can add global fonts, meta tags, etc. */}
-            <title>Krister's Portfolio</title>
+            <title>Krister&#39;s Portfolio</title>
             <meta name="description" content="Explore the creative portfolio of Krister Munguia. Discover projects, skills, and professional journey." />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter&display=swap" />

@@ -1,5 +1,5 @@
-import logo from '@/app/images/MK.png'
-import Image from 'next/image';
+import logo from "@/app/images/MK.png";
+import Image from "next/image";
 
 const Footer = () => {
 
@@ -12,17 +12,11 @@ const Footer = () => {
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           <a href="https://kristerch65.github.io/" className="flex ms-2 items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-            <Image src={logo} width={50} height={50}  alt="Krister' Logo" />
+            <Image src={logo} width={50} height={50}  alt="Krister&#39;s Logo" />
           </a>
           <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
               <a href="#" className="hover:underline me-4 md:me-6">About</a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline me-4 md:me-6">Privacy Policy</a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline me-4 md:me-6">Licensing</a>
             </li>
             <li>
               <a href="#" className="hover:underline">Contact</a>
@@ -35,7 +29,7 @@ const Footer = () => {
           </span>
           <div className="flex mt-4 sm:justify-center sm:mt-0">
             <a href="https://www.linkedin.com/in/krister-munguia-5292511a8" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
-              <svg xmlns="http://www.w3.org/2000/svg" className='w-4 h-4' fill="currentColor" viewBox="0 0 50 50">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="currentColor" viewBox="0 0 50 50">
                   <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z"></path>
               </svg>
               <span className="sr-only">Linkedin page</span>
