@@ -3,16 +3,17 @@
 import { useTheme } from "next-themes";
 import logo from '@/app/images/MK.png';
 import Image from "next/image";
+import Link from "next/link";
 
 
 const Navbar = () => {
-  const { systemTheme, theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   return (
     <>
       <nav className="flex items-center justify-between flex-wrap bg-white dark:bg-gray-900 p-4">
         <div className="flex items-center flex-shrink-0 ms-12 ">
-          <Image src={logo} alt="Krister Portafolio" width={60} height={60}/>
+          <Link href="/"><Image src={logo} alt="Krister Portafolio" width={60} height={60}/></Link>
         </div>
         <div className="block lg:hidden">
           <button className="flex items-center px-3 py-2 border rounded text-black dark:text-white border-black dark:border-white hover:text-teal-200 dark:hover:text-teal-200 hover:border-teal-500 dark:hover:border-teal-500">
@@ -21,15 +22,12 @@ const Navbar = () => {
         </div>
         <div className="w-full block flex-wrap lg:flex lg:items-center lg:w-auto">
           <div className="text-sm lg:flex-grow mr-12">
-            <a href="#responsive-header" className="block mt-2 lg:inline-block lg:mt-0 text-black dark:text-white dark:hover:text-teal-500 hover:text-teal-500 mr-4">
-              Docs
-            </a>
-            <a href="#responsive-header" className="block mt-2 lg:inline-block lg:mt-0 text-black dark:text-white dark:hover:text-teal-500 hover:text-teal-500 mr-4">
-              Examples
-            </a>
-            <a href="#responsive-header" className="block mt-2 lg:inline-block lg:mt-0 text-black dark:text-white dark:hover:text-teal-500 hover:text-teal-500">
-              Blog
-            </a>
+            <Link href="/" className="block mt-2 lg:inline-block lg:mt-0 text-black dark:text-white dark:hover:text-teal-500 hover:text-teal-500 mr-4">
+              About
+            </Link>
+            <Link href="/" className="block mt-2 lg:inline-block lg:mt-0 text-black dark:text-white dark:hover:text-teal-500 hover:text-teal-500 mr-4">
+              Contact
+            </Link>
           </div>
           <div>
             <span className="block mt-4 lg:inline-block lg:mt-0 text-black dark:text-white">|</span>
