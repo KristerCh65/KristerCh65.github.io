@@ -6,7 +6,7 @@ const About = () => {
   return (
     <div className=" w-auto flex justify-between items-center flex-wrap m-32 space-y-4 ">
       <div className=" flex-row max-w-fit">
-        <h2 className="text-4xl font-bold">Hello I&#39;m Krister 👋</h2>
+        <h2 className="text-4xl font-bold">Hello I&#39;m Krister Munguia 👋</h2>
         <div className="flex-col max-w-fit">
           <p className="text-sm mt-4 max-w-prose">
             As a developer, I have always been passionate about creating elegant 
