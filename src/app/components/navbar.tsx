@@ -1,6 +1,7 @@
 
 
 import { useTheme } from "next-themes";
+import { useState } from "react";
 import logo from '@/app/images/MK.png';
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +9,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
@@ -16,11 +18,14 @@ const Navbar = () => {
           <Link href="/"><Image src={logo} alt="Krister Portafolio" width={60} height={60}/></Link>
         </div>
         <div className="block lg:hidden">
-          <button className="flex items-center px-3 py-2 border rounded text-black dark:text-white border-black dark:border-white hover:text-teal-200 dark:hover:text-teal-200 hover:border-teal-500 dark:hover:border-teal-500">
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="flex items-center px-3 py-2 border rounded text-black dark:text-white border-black dark:border-white hover:text-teal-200 dark:hover:text-teal-200 hover:border-teal-500 dark:hover:border-teal-500"
+          >
             <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
           </button>
         </div>
-        <div className="w-full block flex-wrap lg:flex lg:items-center lg:w-auto">
+        <div className={`w-full ${isMenuOpen ? 'block' : 'hidden'} lg:flex lg:items-center lg:w-auto`}>
           <div className="text-sm lg:flex-grow mr-12">
             <Link href="/" className="block mt-2 lg:inline-block lg:mt-0 text-black dark:text-white dark:hover:text-teal-500 hover:text-teal-500 mr-4">
               About
