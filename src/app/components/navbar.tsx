@@ -5,6 +5,7 @@ import { useState } from "react";
 import logo from '@/app/images/MK.png';
 import Image from "next/image";
 import Link from "next/link";
+import logo from '@/app/images/MK.png';
 
 
 const Navbar = () => {
