@@ -11,16 +11,20 @@ const Navbar = () => {
   const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const previousMenuState = useRef(false);
 
   // Focus management: move focus to close button when menu opens, return to hamburger when closed
   useEffect(() => {
     if (isMenuOpen) {
       // Move focus to the close button when menu opens
       closeButtonRef.current?.focus();
-    } else {
-      // Return focus to hamburger button when menu closes
+    } else if (previousMenuState.current) {
+      // Return focus to hamburger button only when menu was previously open
       hamburgerButtonRef.current?.focus();
     }
+    
+    // Update previous state
+    previousMenuState.current = isMenuOpen;
   }, [isMenuOpen]);
 
   // Focus trap: keep focus within the menu when it's open
@@ -35,7 +39,7 @@ const Navbar = () => {
 
       // Get all focusable elements within the menu
       const focusableElements = menuElement.querySelectorAll<HTMLElement>(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), [contenteditable]:not([contenteditable="false"])'
       );
       const firstElement = focusableElements[0];
       const lastElement = focusableElements[focusableElements.length - 1];
