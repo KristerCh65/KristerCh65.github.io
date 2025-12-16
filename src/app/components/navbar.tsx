@@ -1,101 +1,44 @@
 
-
 import { useTheme } from "next-themes";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-
-// Selector for all focusable elements
-const FOCUSABLE_ELEMENTS_SELECTOR = 
-  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), [contenteditable]:not([contenteditable="false"])';
-
+import logo from '@/app/images/MK.png';
 
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const previousMenuState = useRef(false);
-
-  // Focus management: move focus to close button when menu opens, return to hamburger when closed
-  useEffect(() => {
-    if (isMenuOpen) {
-      // Move focus to the close button when menu opens
-      closeButtonRef.current?.focus();
-    } else if (previousMenuState.current) {
-      // Return focus to hamburger button only when menu was previously open
-      hamburgerButtonRef.current?.focus();
-    }
-    
-    // Update previous state
-    previousMenuState.current = isMenuOpen;
-  }, [isMenuOpen]);
-
-  // Focus trap: keep focus within the menu when it's open
-  useEffect(() => {
-    if (!isMenuOpen) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return;
-
-      const menuElement = menuRef.current;
-      if (!menuElement) return;
-
-      // Get all focusable elements within the menu
-      const focusableElements = menuElement.querySelectorAll<HTMLElement>(FOCUSABLE_ELEMENTS_SELECTOR);
-      
-      // If no focusable elements, do nothing
-      if (focusableElements.length === 0) return;
-      
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
-
-      // If shift+tab on first element, move to last
-      if (e.shiftKey && document.activeElement === firstElement) {
-        e.preventDefault();
-        lastElement?.focus();
-      }
-      // If tab on last element, move to first
-      else if (!e.shiftKey && document.activeElement === lastElement) {
-        e.preventDefault();
-        firstElement?.focus();
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isMenuOpen]);
 
   return (
     <>
-      <nav className="bg-gray-900 border-b border-teal-500 px-6 py-4">
+      <nav className="bg-white dark:bg-gray-900 border-b border-teal-500 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="text-white text-xl font-mono hover:text-teal-400 transition-colors">
-            &lt;KM /&gt;
+          <Link href="/" className="hover:opacity-80 transition-opacity">
+            <Image src={logo} alt="Krister Portfolio" width={50} height={50} />
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            <Link href="#about" className="text-gray-300 hover:text-white transition-colors">
+            <Link href="#about" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
               About
             </Link>
-            <Link href="#work" className="text-gray-300 hover:text-white transition-colors">
+            <Link href="#work" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
               Work
             </Link>
-            <Link href="#testimonials" className="text-gray-300 hover:text-white transition-colors">
+            <Link href="#testimonials" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
               Testimonials
             </Link>
-            <Link href="#contact" className="text-gray-300 hover:text-white transition-colors">
+            <Link href="#contact" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
               Contact
             </Link>
             
-            <div className="w-px h-6 bg-gray-600"></div>
+            <div className="w-px h-6 bg-gray-400 dark:bg-gray-600"></div>
             
             <button 
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-              className="text-gray-300 hover:text-white transition-colors p-1"
+              className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors p-1"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -113,9 +56,9 @@ const Navbar = () => {
               href="/KBMCH_CV.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="px-4 py-2 border border-white text-white rounded hover:bg-white hover:text-gray-900 transition-colors inline-flex items-center gap-2"
+              className="px-4 py-2 border rounded text-black border-black dark:text-white dark:border-white dark:hover:bg-white hover:border-transparent dark:hover:text-teal-500 hover:text-teal-500 hover:bg-black transition-colors inline-flex items-center gap-2"
             >
-              <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
               </svg>
               Download CV
@@ -124,9 +67,8 @@ const Navbar = () => {
 
           {/* Mobile Hamburger Button */}
           <button 
-            ref={hamburgerButtonRef}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-white p-2 hover:text-teal-400 transition-colors"
+            className="lg:hidden text-black dark:text-white p-2 hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
             aria-label="Toggle menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -146,21 +88,20 @@ const Navbar = () => {
           ></div>
           
           {/* Sidebar */}
-          <div ref={menuRef} className="fixed top-0 right-0 h-full w-80 bg-gray-900 z-50 lg:hidden shadow-xl">
+          <div className="fixed top-0 right-0 h-full w-80 bg-white dark:bg-gray-900 z-50 lg:hidden shadow-xl">
             <div className="flex flex-col h-full">
               {/* Header with Logo and Close Button */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-teal-500">
                 <Link 
                   href="/" 
-                  className="text-white text-xl font-mono"
+                  className="hover:opacity-80 transition-opacity"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  &lt;KM /&gt;
+                  <Image src={logo} alt="Krister Portfolio" width={40} height={40} />
                 </Link>
                 <button 
-                  ref={closeButtonRef}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-white hover:text-teal-400 transition-colors p-1"
+                  className="text-black dark:text-white hover:text-teal-500 dark:hover:text-teal-400 transition-colors p-1"
                   aria-label="Close menu"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -173,28 +114,28 @@ const Navbar = () => {
               <div className="flex flex-col gap-2 p-6 flex-grow">
                 <Link 
                   href="#about" 
-                  className="text-gray-300 hover:text-white transition-colors py-2"
+                  className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   About
                 </Link>
                 <Link 
                   href="#work" 
-                  className="text-gray-300 hover:text-white transition-colors py-2"
+                  className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Work
                 </Link>
                 <Link 
                   href="#testimonials" 
-                  className="text-gray-300 hover:text-white transition-colors py-2"
+                  className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Testimonials
                 </Link>
                 <Link 
                   href="#contact" 
-                  className="text-gray-300 hover:text-white transition-colors py-2"
+                  className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Contact
@@ -202,10 +143,10 @@ const Navbar = () => {
 
                 {/* Theme Toggle */}
                 <div className="flex items-center justify-between py-2 mt-4">
-                  <span className="text-gray-300">Switch Theme</span>
+                  <span className="text-black dark:text-gray-300">Switch Theme</span>
                   <button 
                     onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                    className="text-gray-300 hover:text-white transition-colors p-1"
+                    className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors p-1"
                     aria-label="Toggle theme"
                   >
                     {theme === 'dark' ? (
@@ -225,10 +166,10 @@ const Navbar = () => {
                   href="/KBMCH_CV.pdf" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="mt-4 px-4 py-3 border border-white text-white rounded hover:bg-white hover:text-gray-900 transition-colors inline-flex items-center justify-center gap-2"
+                  className="mt-4 px-4 py-3 border rounded text-black border-black dark:text-white dark:border-white dark:hover:bg-white hover:border-transparent dark:hover:text-teal-500 hover:text-teal-500 hover:bg-black transition-colors inline-flex items-center justify-center gap-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
                   </svg>
                   Download CV
