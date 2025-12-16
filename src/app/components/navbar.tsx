@@ -2,7 +2,9 @@
 
 import { useTheme } from "next-themes";
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import logo from '@/app/images/MK.png';
 
 
 const Navbar = () => {
@@ -11,33 +13,33 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-gray-900 border-b border-teal-500 px-6 py-4">
+      <nav className="bg-white dark:bg-gray-900 border-b border-teal-500 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="text-white text-xl font-mono hover:text-teal-400 transition-colors">
-            &lt;KM /&gt;
+          <Link href="/" className="hover:opacity-80 transition-opacity">
+            <Image src={logo} alt="Krister Portfolio" width={50} height={50} />
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            <Link href="#about" className="text-gray-300 hover:text-white transition-colors">
+            <Link href="#about" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
               About
             </Link>
-            <Link href="#work" className="text-gray-300 hover:text-white transition-colors">
+            <Link href="#work" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
               Work
             </Link>
-            <Link href="#testimonials" className="text-gray-300 hover:text-white transition-colors">
+            <Link href="#testimonials" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
               Testimonials
             </Link>
-            <Link href="#contact" className="text-gray-300 hover:text-white transition-colors">
+            <Link href="#contact" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
               Contact
             </Link>
             
-            <div className="w-px h-6 bg-gray-600"></div>
+            <div className="w-px h-6 bg-gray-400 dark:bg-gray-600"></div>
             
             <button 
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-              className="text-gray-300 hover:text-white transition-colors p-1"
+              className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors p-1"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -67,7 +69,7 @@ const Navbar = () => {
           {/* Mobile Hamburger Button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-white p-2 hover:text-teal-400 transition-colors"
+            className="lg:hidden text-black dark:text-white p-2 hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
             aria-label="Toggle menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,20 +89,20 @@ const Navbar = () => {
           ></div>
           
           {/* Sidebar */}
-          <div className="fixed top-0 right-0 h-full w-80 bg-gray-900 z-50 lg:hidden shadow-xl">
+          <div className="fixed top-0 right-0 h-full w-80 bg-white dark:bg-gray-900 z-50 lg:hidden shadow-xl">
             <div className="flex flex-col h-full">
               {/* Header with Logo and Close Button */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-teal-500">
                 <Link 
                   href="/" 
-                  className="text-white text-xl font-mono"
+                  className="hover:opacity-80 transition-opacity"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  &lt;KM /&gt;
+                  <Image src={logo} alt="Krister Portfolio" width={40} height={40} />
                 </Link>
                 <button 
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-white hover:text-teal-400 transition-colors p-1"
+                  className="text-black dark:text-white hover:text-teal-500 dark:hover:text-teal-400 transition-colors p-1"
                   aria-label="Close menu"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -113,28 +115,28 @@ const Navbar = () => {
               <div className="flex flex-col gap-2 p-6 flex-grow">
                 <Link 
                   href="#about" 
-                  className="text-gray-300 hover:text-white transition-colors py-2"
+                  className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   About
                 </Link>
                 <Link 
                   href="#work" 
-                  className="text-gray-300 hover:text-white transition-colors py-2"
+                  className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Work
                 </Link>
                 <Link 
                   href="#testimonials" 
-                  className="text-gray-300 hover:text-white transition-colors py-2"
+                  className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Testimonials
                 </Link>
                 <Link 
                   href="#contact" 
-                  className="text-gray-300 hover:text-white transition-colors py-2"
+                  className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Contact
@@ -142,10 +144,10 @@ const Navbar = () => {
 
                 {/* Theme Toggle */}
                 <div className="flex items-center justify-between py-2 mt-4">
-                  <span className="text-gray-300">Switch Theme</span>
+                  <span className="text-black dark:text-gray-300">Switch Theme</span>
                   <button 
                     onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                    className="text-gray-300 hover:text-white transition-colors p-1"
+                    className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors p-1"
                     aria-label="Toggle theme"
                   >
                     {theme === 'dark' ? (
