@@ -4,6 +4,11 @@ import { useTheme } from "next-themes";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
+// Selector for all focusable elements
+const FOCUSABLE_ELEMENTS_SELECTOR = 
+  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), [contenteditable]:not([contenteditable="false"])';
+
+
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -38,9 +43,11 @@ const Navbar = () => {
       if (!menuElement) return;
 
       // Get all focusable elements within the menu
-      const focusableElements = menuElement.querySelectorAll<HTMLElement>(
-        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), [contenteditable]:not([contenteditable="false"])'
-      );
+      const focusableElements = menuElement.querySelectorAll<HTMLElement>(FOCUSABLE_ELEMENTS_SELECTOR);
+      
+      // If no focusable elements, do nothing
+      if (focusableElements.length === 0) return;
+      
       const firstElement = focusableElements[0];
       const lastElement = focusableElements[focusableElements.length - 1];
 
