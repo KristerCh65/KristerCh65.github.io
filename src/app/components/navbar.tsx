@@ -1,13 +1,71 @@
 
 
 import { useTheme } from "next-themes";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+
+// Selector for all focusable elements
+const FOCUSABLE_ELEMENTS_SELECTOR = 
+  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), [contenteditable]:not([contenteditable="false"])';
+
 
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const previousMenuState = useRef(false);
+
+  // Focus management: move focus to close button when menu opens, return to hamburger when closed
+  useEffect(() => {
+    if (isMenuOpen) {
+      // Move focus to the close button when menu opens
+      closeButtonRef.current?.focus();
+    } else if (previousMenuState.current) {
+      // Return focus to hamburger button only when menu was previously open
+      hamburgerButtonRef.current?.focus();
+    }
+    
+    // Update previous state
+    previousMenuState.current = isMenuOpen;
+  }, [isMenuOpen]);
+
+  // Focus trap: keep focus within the menu when it's open
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+
+      const menuElement = menuRef.current;
+      if (!menuElement) return;
+
+      // Get all focusable elements within the menu
+      const focusableElements = menuElement.querySelectorAll<HTMLElement>(FOCUSABLE_ELEMENTS_SELECTOR);
+      
+      // If no focusable elements, do nothing
+      if (focusableElements.length === 0) return;
+      
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      // If shift+tab on first element, move to last
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement?.focus();
+      }
+      // If tab on last element, move to first
+      else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -66,6 +124,7 @@ const Navbar = () => {
 
           {/* Mobile Hamburger Button */}
           <button 
+            ref={hamburgerButtonRef}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden text-white p-2 hover:text-teal-400 transition-colors"
             aria-label="Toggle menu"
@@ -87,7 +146,7 @@ const Navbar = () => {
           ></div>
           
           {/* Sidebar */}
-          <div className="fixed top-0 right-0 h-full w-80 bg-gray-900 z-50 lg:hidden shadow-xl">
+          <div ref={menuRef} className="fixed top-0 right-0 h-full w-80 bg-gray-900 z-50 lg:hidden shadow-xl">
             <div className="flex flex-col h-full">
               {/* Header with Logo and Close Button */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-teal-500">
@@ -99,6 +158,7 @@ const Navbar = () => {
                   &lt;KM /&gt;
                 </Link>
                 <button 
+                  ref={closeButtonRef}
                   onClick={() => setIsMenuOpen(false)}
                   className="text-white hover:text-teal-400 transition-colors p-1"
                   aria-label="Close menu"
