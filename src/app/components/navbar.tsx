@@ -57,9 +57,9 @@ const Navbar = () => {
               href="/KBMCH_CV.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="px-4 py-2 border border-white text-white rounded hover:bg-white hover:text-gray-900 transition-colors inline-flex items-center gap-2"
+              className="px-4 py-2 border rounded text-black border-black dark:text-white dark:border-white dark:hover:bg-white hover:border-transparent dark:hover:text-teal-500 hover:text-teal-500 hover:bg-black transition-colors inline-flex items-center gap-2"
             >
-              <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
               </svg>
               Download CV
@@ -167,10 +167,10 @@ const Navbar = () => {
                   href="/KBMCH_CV.pdf" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="mt-4 px-4 py-3 border border-white text-white rounded hover:bg-white hover:text-gray-900 transition-colors inline-flex items-center justify-center gap-2"
+                  className="mt-4 px-4 py-3 border rounded text-black border-black dark:text-white dark:border-white dark:hover:bg-white hover:border-transparent dark:hover:text-teal-500 hover:text-teal-500 hover:bg-black transition-colors inline-flex items-center justify-center gap-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
                   </svg>
                   Download CV
