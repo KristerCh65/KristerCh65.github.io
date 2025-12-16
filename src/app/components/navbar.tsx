@@ -34,9 +34,11 @@ const Navbar = () => {
               Contact
             </Link>
           </div>
-          <div>
-            <span className="block mt-4 lg:inline-block lg:mt-0 text-black dark:text-white">|</span>
-          </div>
+          {! isMenuOpen && (
+            <div>
+              <span className="block mt-4 lg:inline-block lg: mt-0 text-black dark:text-white">|</span>
+            </div>
+          )}
           <div>
             {theme == 'light' ?
               <button className="px-6 py-2" onClick={() => setTheme('dark')} >
