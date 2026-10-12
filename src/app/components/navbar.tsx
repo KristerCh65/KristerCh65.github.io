@@ -24,11 +24,11 @@ const Navbar = () => {
             <Link href="#about" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
               About
             </Link>
-            <Link href="#work" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
-              Work
+            <Link href="#projects" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
+              Projects
             </Link>
-            <Link href="#testimonials" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
-              Testimonials
+            <Link href="#experience" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
+              Experience
             </Link>
             <Link href="#contact" className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors">
               Contact
@@ -120,18 +120,18 @@ const Navbar = () => {
                   About
                 </Link>
                 <Link 
-                  href="#work" 
+                  href="#projects" 
                   className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Work
+                  Projects
                 </Link>
                 <Link 
-                  href="#testimonials" 
+                  href="#experience" 
                   className="text-black dark:text-gray-300 hover:text-teal-500 dark:hover:text-white transition-colors py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Testimonials
+                  Experience
                 </Link>
                 <Link 
                   href="#contact" 

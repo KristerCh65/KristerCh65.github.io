@@ -1,12 +1,23 @@
-export const projectData = [
-    {
-      id: 1,
-      title: "Movies Search",
-      subtitle: "React App",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore rerum laborum iure enim sint nemo omnis voluptate exercitationem eius?",
-      image: "./project-1.gif",
-      tecnologies: ["React", "Typescript"],
-      gitHubLink: "https://reactbootcamp.com",
-    }
-  ];
+import { StaticImageData } from "next/image";
+
+export type Project = {
+  id: number;
+  title: string;
+  description: string;
+  image?: StaticImageData;
+  technologies: string[];
+  gitHubLink: string;
+  previewLink?: string;
+};
+
+export const projectData: Project[] = [
+  {
+    id: 1,
+    title: "Movies Search",
+    description:
+      "React app that connects to the OMDb API to search movies by title, list the results and show the details of each movie.",
+    technologies: ["React", "JavaScript", "Bulma", "OMDb API"],
+    gitHubLink: "https://github.com/KristerCh65/Search-Movies",
+    previewLink: "https://kristerch65.github.io/Search-Movies",
+  },
+];
