@@ -1,4 +1,5 @@
 import About from "@/app/components/about";
+import Projects from "@/app/components/projects";
 import RootLayout from "./layout"
 import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
@@ -20,6 +21,7 @@ const Home = () => {
             <RootLayout >
                 <Navbar/>
                 <About/>
+                <Projects/>
                 <Footer/>
             </RootLayout>
         </div>
