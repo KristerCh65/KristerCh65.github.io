@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Krister Munguia — Portfolio
 
-## Getting Started
+My personal portfolio site: **https://kristerch65.github.io**
 
-First, run the development server:
+I'm a Software Analyst and Full-Stack Developer from San Pedro Sula, Honduras. I have 5+ years in IT and work mainly with C#, .NET, Angular and JavaScript. The site covers my experience, skills, projects and education, and has a link to download my CV.
+
+## Features
+
+- **English / Spanish:** picks up the browser language and remembers the choice
+- **Light / dark theme** with `next-themes`
+- **Sticky navbar** that highlights the current section, with an accessible mobile menu
+- **Responsive layout** built with Tailwind CSS
+- **Static export** deployed to GitHub Pages with GitHub Actions
+
+## Tech stack
+
+- [Next.js 14](https://nextjs.org/) (Pages Router) + React 18
+- TypeScript
+- Tailwind CSS
+- GitHub Pages + GitHub Actions
+
+## Getting started
+
+Requires Node.js 20.
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command      | Description                   |
+| ------------ | ----------------------------- |
+| `yarn dev`   | Start the development server  |
+| `yarn build` | Build the production site     |
+| `yarn lint`  | Run ESLint                    |
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Project structure
 
-## Learn More
+```
+src/
+├── pages/            # Next.js pages (index, 404, _app, _document)
+└── app/
+    ├── components/   # Page sections: hero, about, skills, experience, projects...
+    ├── data/         # Content: experience, projects, skills, education
+    ├── i18n/         # Language provider and EN/ES strings
+    ├── images/
+    └── styles/
+public/               # CV (PDF) and skill icons
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Updating content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+All content lives in `src/app/data/` and `src/app/i18n/strings.ts`, so you don't need to touch the components.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Add a project:** add an entry to `projectData` in [`src/app/data/projects.tsx`](src/app/data/projects.tsx):
 
-## Deploy on Vercel
+```tsx
+{
+  id: 3,
+  title: "My Project",
+  description: {
+    en: "What it does, in English.",
+    es: "Qué hace, en español.",
+  },
+  technologies: ["React", "TypeScript"],
+  gitHubLink: "https://github.com/KristerCh65/my-project", // optional
+  previewLink: "https://example.com",                       // optional
+  // image: myProjectImg,  // optional: a screenshot imported from src/app/images
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Leave out `gitHubLink` for client work whose source can't be public. The card will then show only the live preview link.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Every user-facing text has an `en` and an `es` version. UI labels are in `src/app/i18n/strings.ts`.
+
+## Deployment
+
+Every push to `master` triggers [`.github/workflows/nextjs.yml`](.github/workflows/nextjs.yml). It builds a static export and publishes it to GitHub Pages.
+
+## Contact
+
+- Portfolio: https://kristerch65.github.io
+- GitHub: [@KristerCh65](https://github.com/KristerCh65)
