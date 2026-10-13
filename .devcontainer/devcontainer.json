@@ -1,0 +1,19 @@
+{
+  // Same default image GitHub Codespaces uses when no config exists
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "customizations": {
+    "codespaces": {
+      // Lets the codespace push branches, open PRs and turn on Pages in the Carentell demo repo
+      "repositories": {
+        "KristerCh65/CarentellFrontend": {
+          "permissions": {
+            "contents": "write",
+            "pull_requests": "write",
+            "workflows": "write",
+            "pages": "write"
+          }
+        }
+      }
+    }
+  }
+}
